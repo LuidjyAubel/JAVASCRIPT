@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Recursivité</title>
+<script>
+    var debug;
+    function BodyOnload(){
+debug = document.getElementById('debug');
+clear();
+var A = 10;
+debug.value = "salut\n";
+debug.value = carre(2);
+/*AfficherI([12,34,56,78,90]);
+AfficherR([12,34,56,78,90,0]);*/
+    }
+    function clear(){
+        debug.value = '';
+    }
+    function sommeI(N){
+        var somme = 0;
+        for (var i=1; i<= N; i++){
+            somme = somme + i;
+            return somme ; 
+        }
+    }
+    function sommeR(N){
+        debug.value = "appel avec "+N;
+        var res ; 
+        if (N == 1) res = 1;
+        else res = N + sommeR(N-1);
+    }
+    function AfficherI(tab){
+        for (var i = 0; i < tab.lenght; i++)
+        debug.value = tab[i]+'';
+    }
+    function AfficherR(tab,i){
+       if (i == tab.lenght) return ('');
+ else 
+ {
+     debug.value = tab[i]+'';
+     AfficherR(tab , i +1);
+ }
+    }
+    function carre(N){
+       if (N == 1) return 1;
+        else 
+        return carre(n-1) +N +(N-1);
+    }
+    function cube(N){
+       if (N == 1) return 1;
+        else 
+        return cube(n-1) +carre(N) +carre(N-1) + carre(N-1) + (N-1);
+    }
+</script>
+</head>
+<body onload="BodyOnload()">
+    <h1>recurcivité</h1>
+    <hr>
+    <p>fonction qui s'appelle elle meme</p>
+    <hr>
+    <textarea cols="60" rows="20" id="debug" placeholder="Salut">
+</body>
+</html>

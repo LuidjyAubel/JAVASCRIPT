@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test-2D v1</title>
+<script src='canvas.js'></script>
+<script src='lib2D.js'></script>
+<script>
+///////////////////////////////////////////////////////////
+{//==================================  Initialisations  ===
+var timer1	= null;	// timer frames
+function	program_init	()	{
+//
+//  Initialiser les objets du programme
+//  Appelé 1 seule fois au début du prog (onload)
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	lib2D_init( 200 , 100 );
+
+	start();	// Timer
+}// -------------------------------------------------------
+}
+{//=================================  Gestion du Timer  ===
+function	start()	{ 
+	if (timer1 == null)
+	timer1 = setInterval('drawFrame()', 1000/30); // timer
+}// -------------------------------------------------------
+function	stop()	{
+	if (timer1 != null)
+	{
+		clearInterval(timer1);
+		timer1=null; // est arrété
+	}
+}// -------------------------------------------------------
+}
+{//=================================  Gestion du Monde  ===
+function	creerLeMonde		()			{
+//
+//  Créer tous les objets du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}// -------------------------------------------------------
+}
+{//==============================  Gestion de la Frame  ===
+var cptFrames = 0;
+function	drawFrame()	{
+//
+// Retracer l'image courante du monde
+// Appelé 50 fois par seconde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	//cptFrames++;
+	
+	//-- Gérer l'animation
+var angle = cptFrames/130 *2*Math.PI ;
+var dx = 5 * Math.cos(angle);	// Délacement de dx,dy
+var dy = 2 * Math.sin(angle);	// autour d'une ellipse
+
+	//-- Afficher les objets
+	lib2D_echelle ( 15 );
+	
+	lib2D_clear ( 'black' );	// Effacer l'écran
+	lib2D_repere(  5 );			// Tracer le repère 2D
+	
+	lib2D_point (  10 ,  0 , 'red' );
+	lib2D_point ( -10 , 10 , 'lime' );
+	
+	//--- Dessiner Maison
+	lib2D_point   ( dx+0 , dy+0 , 'yellow' );
+	lib2D_segment ( dx+0 , dy+0 , dx+0 , dy+2 , 'aqua' );
+	lib2D_segment ( dx+0 , dy+2 , dx+4 , dy+2 , 'aqua' );
+	lib2D_segment ( dx+4 , dy+2 , dx+4 , dy+0 , 'aqua' );
+	lib2D_segment ( dx+4 , dy+0 , dx+0 , dy+0 , 'aqua' );
+	
+	lib2D_segment ( dx+0 , dy+2 , dx+2 , dy+4 , 'aqua' );
+	lib2D_segment ( dx+2 , dy+4 , dx+4 , dy+2 , 'aqua' );
+}// -------------------------------------------------------
+}
+///////////////////////////////////////////////////////////
+</script>
+</head>
+<body onload="program_init()">
+    <h1>Test-2D v1</h1>
+
+    <canvas id="canvas1"
+            width="400" height="300"
+            style="border:solid 1px #444">
+    </canvas>
+</body>
+</html>
